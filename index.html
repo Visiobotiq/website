@@ -1,56 +1,286 @@
 <!DOCTYPE html>
-<html lang="nl">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Visiobotiq — Coming Soon</title>
+    <title>Visiobotiq | Modular Software Platform for Advanced Industrial Automation</title>
+    <meta name="description" content="Visiobotiq is a modular software platform for advanced industrial automation.">
     <style>
-        * { box-sizing: border-box; margin: 0; padding: 0; }
+        :root {
+            --bg: #edf0f2;
+            --ink: #091b3a;
+            --blue-1: #0b2f74;
+            --blue-2: #184d9d;
+            --blue-3: #1f7ad6;
+            --cyan: #34c8ff;
+            --steel: #dfe3e8;
+            --steel-dark: #9aa5b1;
+            --dark: #02162e;
+            --text-light: #eaf2ff;
+        }
+
+        * { box-sizing: border-box; }
+
+        html, body {
+            margin: 0;
+            padding: 0;
+            min-height: 100%;
+            font-family: "Segoe UI", Arial, sans-serif;
+            background: var(--bg);
+            color: var(--ink);
+        }
+
         body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            background-color: #0b0f19;
-            color: #ffffff;
+            min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
-            min-height: 100vh;
-            text-align: center;
-            padding: 20px;
+            padding: 40px 20px;
         }
-        .container {
-            max-width: 650px;
-            background: #111827;
-            padding: 50px 30px;
-            border-radius: 16px;
-            border: 1px solid #1f2937;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+
+        .page {
+            width: min(1400px, 100%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
         }
-        .tag {
-            display: inline-block;
-            padding: 6px 14px;
-            background: rgba(14, 165, 233, 0.1);
-            color: #38bdf8;
-            border-radius: 20px;
-            font-size: 0.85rem;
-            font-weight: 600;
-            margin-bottom: 24px;
+
+        .brand-lockup {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: nowrap;
+            gap: 18px;
+        }
+
+        .visio-word {
+            font-size: clamp(3.8rem, 7vw, 15rem);
+            line-height: 0.9;
+            font-weight: 900;
+            letter-spacing: -0.07em;
+            color: var(--blue-1);
             text-transform: uppercase;
-            letter-spacing: 1px;
+            display: inline-block;
+            transform: translateY(2px);
+            text-shadow: 0 0 0 rgba(0,0,0,0);
         }
-        h1 { font-size: 2.8rem; margin-bottom: 12px; font-weight: 700; color: #fff; }
-        .pillars { color: #38bdf8; font-size: 1.1rem; font-weight: 600; margin-bottom: 24px; }
-        p { color: #9ca3af; font-size: 1.05rem; line-height: 1.6; margin-bottom: 30px; }
-        .footer { font-size: 0.85rem; color: #6b7280; border-top: 1px solid #1f2937; padding-top: 20px; }
+
+        .visio-word .visio {
+            color: var(--blue-1);
+        }
+
+        .visio-word .botiq {
+            background: linear-gradient(90deg, var(--blue-3), var(--cyan));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .visio-word .q {
+            color: var(--cyan);
+            position: relative;
+            display: inline-block;
+        }
+
+        .visio-word .q::after {
+            content: "";
+            position: absolute;
+            right: -0.05em;
+            bottom: 0.06em;
+            width: 0.24em;
+            height: 0.24em;
+            border-radius: 50%;
+            background: var(--cyan);
+        }
+
+        .esd-block {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 18px;
+            margin-top: 10px;
+        }
+
+        .esd-mark {
+            position: relative;
+            width: clamp(180px, 20vw, 460px);
+            height: clamp(180px, 20vw, 460px);
+            min-width: 180px;
+            min-height: 180px;
+            border-radius: 50%;
+            background: conic-gradient(from 0deg,
+                #dfe3e8 0deg 36deg,
+                transparent 36deg 72deg,
+                #dfe3e8 72deg 108deg,
+                transparent 108deg 144deg,
+                #dfe3e8 144deg 180deg,
+                transparent 180deg 216deg,
+                #dfe3e8 216deg 252deg,
+                transparent 252deg 288deg,
+                #dfe3e8 288deg 324deg,
+                transparent 324deg 360deg
+            );
+            box-shadow: inset 0 0 0 12px rgba(0,0,0,0.03);
+            transform: rotate(35deg);
+            opacity: 0.96;
+        }
+
+        .esd-mark::before {
+            content: "";
+            position: absolute;
+            inset: 28px;
+            border-radius: 50%;
+            background: var(--bg);
+            box-shadow: 0 0 0 12px rgba(0,0,0,0.02);
+        }
+
+        .esd-mark::after {
+            content: "";
+            position: absolute;
+            inset: 50% auto auto 50%;
+            width: 54%;
+            height: 54%;
+            transform: translate(-50%, -50%) rotate(45deg);
+            background: linear-gradient(135deg, rgba(7,33,79,0.9), rgba(19,113,185,0.95));
+            clip-path: polygon(50% 0%, 100% 100%, 0% 100%);
+            border-radius: 26px 26px 0 26px;
+            box-shadow: 0 0 0 18px rgba(255,255,255,0.07);
+        }
+
+        .esd-mark .bolt {
+            position: absolute;
+            z-index: 2;
+            left: 50%;
+            top: 50%;
+            width: 38%;
+            height: 22%;
+            transform: translate(-50%, -50%) rotate(-32deg);
+            background: linear-gradient(90deg, rgba(10,40,90,1), rgba(26,146,223,1));
+            clip-path: polygon(20% 0%, 100% 0%, 62% 40%, 100% 40%, 28% 100%, 50% 60%, 0% 60%);
+            border-radius: 10px;
+            box-shadow: 0 0 18px rgba(15, 145, 230, 0.18);
+        }
+
+        .esd-text {
+            font-size: clamp(4rem, 8vw, 18rem);
+            line-height: 0.9;
+            font-weight: 900;
+            letter-spacing: -0.08em;
+            text-transform: uppercase;
+            color: var(--blue-1);
+            display: flex;
+            align-items: center;
+            gap: 0.06em;
+        }
+
+        .esd-text .esd-e {
+            color: #dfe3e8;
+        }
+
+        .esd-text .esd-s {
+            color: #dfe3e8;
+        }
+
+        .esd-text .esd-d {
+            color: var(--blue-3);
+            text-shadow: 0 0 0 rgba(0,0,0,0);
+        }
+
+        .tagline {
+            font-size: clamp(1rem, 2vw, 2.8rem);
+            line-height: 1.2;
+            font-weight: 800;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--blue-1);
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        .tagline strong {
+            color: var(--blue-3);
+            font-weight: 900;
+        }
+
+        .byline {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            margin-top: 8px;
+            font-size: clamp(0.9rem, 1.1vw, 1.4rem);
+            font-weight: 600;
+            color: var(--blue-1);
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+        }
+
+        .byline a {
+            color: var(--blue-2);
+            text-decoration: none;
+            font-weight: 800;
+        }
+
+        .byline a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 980px) {
+            .brand-lockup {
+                flex-direction: column;
+            }
+
+            .esd-block {
+                flex-direction: column;
+            }
+
+            .tagline {
+                letter-spacing: 0.04em;
+            }
+        }
+
+        @media (max-width: 600px) {
+            body {
+                padding: 30px 14px;
+            }
+
+            .page {
+                gap: 10px;
+            }
+
+            .esd-mark {
+                width: 160px;
+                height: 160px;
+                min-width: 160px;
+                min-height: 160px;
+            }
+        }
     </style>
 </head>
 <body>
-    <div class="container">
-        <span class="tag">Building the Factory of the Future</span>
-        <h1>Visiobotiq</h1>
-        <div class="pillars">VISIO &bull; BOT &bull; IQ</div>
-        <p>Onze nieuwe website is momenteel in aanbouw. Binnenkort ontdekt u hier ons modulair softwareplatform voor automatische productherkenning, robotbesturing en procesintelligentie.</p>
-        <div class="footer">
-            Een product van <strong>E.S.D. Industrial Automation</strong>
+    <div class="page">
+        <div class="brand-lockup">
+            <div class="visio-word" aria-label="Visiobotiq logo">
+                <span class="visio">VISIO</span><span class="botiq">BOT</span><span class="q">IQ</span>
+            </div>
+        </div>
+
+        <div class="esd-block" aria-label="ESD industrial automation logo">
+            <div class="esd-mark" aria-hidden="true">
+                <span class="bolt"></span>
+            </div>
+            <div class="esd-text" aria-label="ESD">
+                <span class="esd-e">E</span><span class="esd-s">S</span><span class="esd-d">D</span>
+            </div>
+        </div>
+
+        <div class="tagline">
+            Modular software platform for <strong>advanced industrial automation</strong>
+        </div>
+
+        <div class="byline">
+            <span>by</span>
+            <a href="https://www.esdbv.be/" target="_blank" rel="noreferrer">ESD BV</a>
         </div>
     </div>
 </body>
