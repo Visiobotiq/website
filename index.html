@@ -1,287 +1,245 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Visiobotiq | Modular Software Platform for Advanced Industrial Automation</title>
-    <meta name="description" content="Visiobotiq is a modular software platform for advanced industrial automation.">
-    <style>
-        :root {
-            --bg: #edf0f2;
-            --ink: #091b3a;
-            --blue-1: #0b2f74;
-            --blue-2: #184d9d;
-            --blue-3: #1f7ad6;
-            --cyan: #34c8ff;
-            --steel: #dfe3e8;
-            --steel-dark: #9aa5b1;
-            --dark: #02162e;
-            --text-light: #eaf2ff;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Visiobotiq | Modular Software Platform for Advanced Industrial Automation</title>
+  <meta name="description" content="Visiobotiq is a modular software platform for advanced industrial automation." />
+  <style>
+    :root {
+      --bg: #e5e8eb;
+      --blue-deep: #0c2f72;
+      --blue-mid: #0f5db7;
+      --blue-light: #2aa7ea;
+      --blue-soft: #d9e5f4;
+      --steel: #c8ced4;
+      --steel-dark: #8d98a7;
+      --ink: #0c2b5d;
+      --white: #f7f9fb;
+    }
 
-        * { box-sizing: border-box; }
+    * { box-sizing: border-box; }
 
-        html, body {
-            margin: 0;
-            padding: 0;
-            min-height: 100%;
-            font-family: "Segoe UI", Arial, sans-serif;
-            background: var(--bg);
-            color: var(--ink);
-        }
+    html, body {
+      margin: 0;
+      padding: 0;
+      min-height: 100%;
+      background: var(--bg);
+      font-family: "Segoe UI", Arial, sans-serif;
+      color: var(--ink);
+    }
 
-        body {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 40px 20px;
-        }
+    body {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 28px 18px;
+    }
 
-        .page {
-            width: min(1400px, 100%);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 20px;
-        }
+    .page {
+      width: min(1500px, 100%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 18px;
+      text-align: center;
+    }
 
-        .brand-lockup {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-wrap: nowrap;
-            gap: 18px;
-        }
+    .brand {
+      font-weight: 900;
+      letter-spacing: -0.08em;
+      line-height: 0.82;
+      font-size: clamp(5rem, 10vw, 18rem);
+      text-transform: uppercase;
+      white-space: nowrap;
+      display: inline-flex;
+      align-items: baseline;
+      justify-content: center;
+      flex-wrap: nowrap;
+      user-select: none;
+    }
 
-        .visio-word {
-            font-size: clamp(3.8rem, 7vw, 15rem);
-            line-height: 0.9;
-            font-weight: 900;
-            letter-spacing: -0.07em;
-            color: var(--blue-1);
-            text-transform: uppercase;
-            display: inline-block;
-            transform: translateY(2px);
-            text-shadow: 0 0 0 rgba(0,0,0,0);
-        }
+    .brand .dark {
+      color: var(--blue-deep);
+    }
 
-        .visio-word .visio {
-            color: var(--blue-1);
-        }
+    .brand .light {
+      background: linear-gradient(90deg, var(--blue-mid) 0%, var(--blue-light) 60%, #5fd0ff 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
 
-        .visio-word .botiq {
-            background: linear-gradient(90deg, var(--blue-3), var(--cyan));
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-        }
+    .brand .q {
+      color: var(--blue-light);
+      display: inline-block;
+      position: relative;
+      margin-left: 0.03em;
+    }
 
-        .visio-word .q {
-            color: var(--cyan);
-            position: relative;
-            display: inline-block;
-        }
+    .brand .q::after {
+      content: "";
+      position: absolute;
+      right: -0.02em;
+      bottom: 0.12em;
+      width: 0.18em;
+      height: 0.18em;
+      background: var(--blue-light);
+      border-radius: 50%;
+    }
 
-        .visio-word .q::after {
-            content: "";
-            position: absolute;
-            right: -0.05em;
-            bottom: 0.06em;
-            width: 0.24em;
-            height: 0.24em;
-            border-radius: 50%;
-            background: var(--cyan);
-        }
+    .center-row {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 20px;
+      margin-top: 6px;
+      width: 100%;
+    }
 
-        .esd-block {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 18px;
-            margin-top: 10px;
-        }
+    .gear-wrap {
+      width: min(32vw, 420px);
+      max-width: 420px;
+      min-width: 220px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
 
-        .esd-mark {
-            position: relative;
-            width: clamp(180px, 20vw, 460px);
-            height: clamp(180px, 20vw, 460px);
-            min-width: 180px;
-            min-height: 180px;
-            border-radius: 50%;
-            background: conic-gradient(from 0deg,
-                #dfe3e8 0deg 36deg,
-                transparent 36deg 72deg,
-                #dfe3e8 72deg 108deg,
-                transparent 108deg 144deg,
-                #dfe3e8 144deg 180deg,
-                transparent 180deg 216deg,
-                #dfe3e8 216deg 252deg,
-                transparent 252deg 288deg,
-                #dfe3e8 288deg 324deg,
-                transparent 324deg 360deg
-            );
-            box-shadow: inset 0 0 0 12px rgba(0,0,0,0.03);
-            transform: rotate(35deg);
-            opacity: 0.96;
-        }
+    .esd-text {
+      font-weight: 900;
+      letter-spacing: -0.08em;
+      line-height: 0.88;
+      text-transform: uppercase;
+      font-size: clamp(3.3rem, 9vw, 15rem);
+      color: var(--blue-deep);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
 
-        .esd-mark::before {
-            content: "";
-            position: absolute;
-            inset: 28px;
-            border-radius: 50%;
-            background: var(--bg);
-            box-shadow: 0 0 0 12px rgba(0,0,0,0.02);
-        }
+    .esd-text .soft {
+      color: #cfd6de;
+    }
 
-        .esd-mark::after {
-            content: "";
-            position: absolute;
-            inset: 50% auto auto 50%;
-            width: 54%;
-            height: 54%;
-            transform: translate(-50%, -50%) rotate(45deg);
-            background: linear-gradient(135deg, rgba(7,33,79,0.9), rgba(19,113,185,0.95));
-            clip-path: polygon(50% 0%, 100% 100%, 0% 100%);
-            border-radius: 26px 26px 0 26px;
-            box-shadow: 0 0 0 18px rgba(255,255,255,0.07);
-        }
+    .esd-text .deep {
+      color: var(--blue-mid);
+    }
 
-        .esd-mark .bolt {
-            position: absolute;
-            z-index: 2;
-            left: 50%;
-            top: 50%;
-            width: 38%;
-            height: 22%;
-            transform: translate(-50%, -50%) rotate(-32deg);
-            background: linear-gradient(90deg, rgba(10,40,90,1), rgba(26,146,223,1));
-            clip-path: polygon(20% 0%, 100% 0%, 62% 40%, 100% 40%, 28% 100%, 50% 60%, 0% 60%);
-            border-radius: 10px;
-            box-shadow: 0 0 18px rgba(15, 145, 230, 0.18);
-        }
+    .tagline {
+      font-weight: 900;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      line-height: 1.08;
+      font-size: clamp(1.1rem, 2vw, 3.3rem);
+      color: var(--blue-deep);
+      max-width: 1250px;
+      margin-top: 12px;
+    }
 
-        .esd-text {
-            font-size: clamp(4rem, 8vw, 18rem);
-            line-height: 0.9;
-            font-weight: 900;
-            letter-spacing: -0.08em;
-            text-transform: uppercase;
-            color: var(--blue-1);
-            display: flex;
-            align-items: center;
-            gap: 0.06em;
-        }
+    .tagline .accent {
+      color: var(--blue-mid);
+    }
 
-        .esd-text .esd-e {
-            color: #dfe3e8;
-        }
+    .byline {
+      font-size: clamp(0.8rem, 1.2vw, 1.6rem);
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--blue-deep);
+      font-weight: 800;
+      margin-top: 10px;
+    }
 
-        .esd-text .esd-s {
-            color: #dfe3e8;
-        }
+    .byline a {
+      color: var(--blue-deep);
+      text-decoration: none;
+    }
 
-        .esd-text .esd-d {
-            color: var(--blue-3);
-            text-shadow: 0 0 0 rgba(0,0,0,0);
-        }
+    .byline a:hover {
+      text-decoration: underline;
+    }
 
-        .tagline {
-            font-size: clamp(1rem, 2vw, 2.8rem);
-            line-height: 1.2;
-            font-weight: 800;
-            letter-spacing: 0.08em;
-            text-transform: uppercase;
-            color: var(--blue-1);
-            text-align: center;
-            margin-top: 10px;
-        }
+    svg {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
 
-        .tagline strong {
-            color: var(--blue-3);
-            font-weight: 900;
-        }
+    @media (max-width: 900px) {
+      .center-row {
+        gap: 12px;
+      }
 
-        .byline {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            margin-top: 8px;
-            font-size: clamp(0.9rem, 1.1vw, 1.4rem);
-            font-weight: 600;
-            color: var(--blue-1);
-            text-transform: uppercase;
-            letter-spacing: 0.08em;
-        }
+      .brand {
+        font-size: clamp(3.5rem, 13vw, 9rem);
+      }
 
-        .byline a {
-            color: var(--blue-2);
-            text-decoration: none;
-            font-weight: 800;
-        }
+      .tagline {
+        letter-spacing: 0.02em;
+      }
+    }
 
-        .byline a:hover {
-            text-decoration: underline;
-        }
+    @media (max-width: 680px) {
+      .center-row {
+        flex-direction: column;
+      }
 
-        @media (max-width: 980px) {
-            .brand-lockup {
-                flex-direction: column;
-            }
-
-            .esd-block {
-                flex-direction: column;
-            }
-
-            .tagline {
-                letter-spacing: 0.04em;
-            }
-        }
-
-        @media (max-width: 600px) {
-            body {
-                padding: 30px 14px;
-            }
-
-            .page {
-                gap: 10px;
-            }
-
-            .esd-mark {
-                width: 160px;
-                height: 160px;
-                min-width: 160px;
-                min-height: 160px;
-            }
-        }
-    </style>
+      .gear-wrap {
+        width: min(60vw, 300px);
+      }
+    }
+  </style>
 </head>
 <body>
-    <div class="page">
-        <div class="brand-lockup">
-            <div class="visio-word" aria-label="Visiobotiq logo">
-                <span class="visio">VISIO</span><span class="botiq">BOT</span><span class="q">IQ</span>
-            </div>
-        </div>
-
-        <div class="esd-block" aria-label="ESD industrial automation logo">
-            <div class="esd-mark" aria-hidden="true">
-                <span class="bolt"></span>
-            </div>
-            <div class="esd-text" aria-label="ESD">
-                <span class="esd-e">E</span><span class="esd-s">S</span><span class="esd-d">D</span>
-            </div>
-        </div>
-
-        <div class="tagline">
-            Modular software platform for <strong>advanced industrial automation</strong>
-        </div>
-
-        <div class="byline">
-            <span>by</span>
-            <a href="https://www.esdbv.be/" target="_blank" rel="noreferrer">ESD BV</a>
-        </div>
+  <div class="page">
+    <div class="brand" aria-label="Visiobotiq">
+      <span class="dark">VISIO</span><span class="light">BOT</span><span class="q">IQ</span>
     </div>
+
+    <div class="center-row" aria-label="ESD industrial automation logo">
+      <div class="gear-wrap">
+        <svg viewBox="0 0 520 520" role="img" aria-label="ESD logo icon">
+          <defs>
+            <linearGradient id="boltGrad" x1="0%" x2="100%" y1="0%" y2="100%">
+              <stop offset="0%" stop-color="#123d8d"/>
+              <stop offset="100%" stop-color="#2da8e9"/>
+            </linearGradient>
+          </defs>
+
+          <circle cx="260" cy="260" r="180" fill="none" stroke="#dfe3e8" stroke-width="26" opacity="0.9"/>
+          <circle cx="260" cy="260" r="125" fill="none" stroke="#dfe3e8" stroke-width="18" opacity="0.9"/>
+
+          <g fill="#dfe3e8" opacity="0.95">
+            <path d="M154 150 L190 116 L214 124 L188 161 L154 150Z"/>
+            <path d="M166 226 L118 206 L124 178 L182 204 L166 226Z"/>
+            <path d="M283 102 L322 134 L300 174 L258 142 L283 102Z"/>
+            <path d="M364 166 L420 190 L410 230 L350 216 L364 166Z"/>
+            <path d="M390 294 L432 312 L412 360 L350 332 L390 294Z"/>
+            <path d="M289 404 L324 440 L286 466 L255 430 L289 404Z"/>
+            <path d="M186 390 L145 430 L106 410 L146 352 L186 390Z"/>
+            <path d="M104 292 L76 326 L101 368 L144 330 L104 292Z"/>
+          </g>
+
+          <path d="M182 168 L250 107 L322 168 L318 208 L240 188 L280 230 L220 338 L169 336 L213 253 L155 245 Z" fill="#0a2d6f"/>
+          <path d="M236 167 L283 185 L266 233 L328 197 L261 344 L229 285 L182 277 L236 167 Z" fill="url(#boltGrad)"/>
+          <path d="M233 174 L286 192 L268 236 L310 214 L248 331 L222 280 L180 272 L233 174 Z" fill="rgba(255,255,255,0.18)"/>
+        </svg>
+      </div>
+
+      <div class="esd-text" aria-label="ESD">
+        <span class="soft">E</span><span class="soft">S</span><span class="deep">D</span>
+      </div>
+    </div>
+
+    <div class="tagline">
+      Modular software platform for <span class="accent">advanced industrial</span> automation
+    </div>
+
+    <div class="byline">
+      By <a href="https://www.esdbv.be/" target="_blank" rel="noreferrer">ESD BV</a>
+    </div>
+  </div>
 </body>
 </html>
