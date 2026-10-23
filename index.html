@@ -84,23 +84,38 @@
     }
 
     .language-toggle {
+      position: relative;
       display: inline-flex;
       align-items: center;
+      justify-content: center;
       gap: 7px;
       min-width: 142px;
-      padding: 7px 11px;
+      min-height: 36px;
+      padding: 7px 30px 7px 11px;
       color: var(--navy);
       border: 1px solid var(--line);
       border-radius: 999px;
       background: #fff;
       font: inherit;
+      line-height: 1;
       cursor: pointer;
     }
 
     .language-toggle::after {
       content: "⌄";
-      margin-left: auto;
+      position: absolute;
+      right: 11px;
+      top: 50%;
       font-size: 1rem;
+      line-height: 1;
+      transform: translateY(-55%);
+    }
+
+    .language-current {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      line-height: 1;
     }
 
     .language-toggle:focus-visible,
@@ -147,8 +162,11 @@
     }
 
     .language-flag {
-      font-family: "Segoe UI Emoji", "Apple Color Emoji", sans-serif;
-      font-size: 1.15rem;
+      width: 22px;
+      height: 15px;
+      flex: 0 0 22px;
+      object-fit: cover;
+      border-radius: 2px;
       line-height: 1;
     }
 
@@ -393,11 +411,11 @@
           <span id="language-current" class="language-current"></span>
         </button>
         <div id="language-options" class="language-options" role="listbox" aria-labelledby="language-label" hidden>
-          <button class="language-option" type="button" role="option" data-language="nl"><span class="language-flag" aria-hidden="true">🇳🇱</span> Nederlands</button>
-          <button class="language-option" type="button" role="option" data-language="en"><span class="language-flag" aria-hidden="true">🇬🇧</span> English</button>
-          <button class="language-option" type="button" role="option" data-language="de"><span class="language-flag" aria-hidden="true">🇩🇪</span> Deutsch</button>
-          <button class="language-option" type="button" role="option" data-language="fr"><span class="language-flag" aria-hidden="true">🇫🇷</span> Français</button>
-          <button class="language-option" type="button" role="option" data-language="es"><span class="language-flag" aria-hidden="true">🇪🇸</span> Español</button>
+          <button class="language-option" type="button" role="option" data-language="nl"><img class="language-flag" src="Assets/flags/nl.svg" alt="" /> Nederlands</button>
+          <button class="language-option" type="button" role="option" data-language="en"><img class="language-flag" src="Assets/flags/gb.svg" alt="" /> English</button>
+          <button class="language-option" type="button" role="option" data-language="de"><img class="language-flag" src="Assets/flags/de.svg" alt="" /> Deutsch</button>
+          <button class="language-option" type="button" role="option" data-language="fr"><img class="language-flag" src="Assets/flags/fr.svg" alt="" /> Français</button>
+          <button class="language-option" type="button" role="option" data-language="es"><img class="language-flag" src="Assets/flags/es.svg" alt="" /> Español</button>
         </div>
       </div>
     </div>
@@ -543,7 +561,10 @@
       document.title = dictionary.title;
       document.querySelector('meta[name="description"]').content = dictionary.description;
       const selectedButton = document.querySelector(`[data-language="${language}"]`);
-      languageCurrent.textContent = selectedButton.textContent.trim();
+      languageCurrent.replaceChildren(
+        selectedButton.querySelector(".language-flag").cloneNode(),
+        document.createTextNode(` ${selectedButton.textContent.trim()}`)
+      );
       languageToggle.setAttribute("aria-label", dictionary.selectLanguage);
       languageButtons.forEach((button) => {
         button.setAttribute("aria-selected", String(button.dataset.language === language));
