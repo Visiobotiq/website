@@ -165,8 +165,87 @@
 
     footer {
       margin-top: 48px;
+      padding-top: 30px;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 0.84rem;
+      text-align: left;
+    }
+
+    .footer-content {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 30px;
+    }
+
+    .footer-heading {
+      margin: 0 0 12px;
+      color: var(--navy);
+      font-size: 0.95rem;
+      font-weight: 800;
+    }
+
+    .footer-company {
+      margin: 0;
+      line-height: 1.75;
+    }
+
+    .footer-company strong {
+      color: var(--navy);
+      font-size: 1rem;
+    }
+
+    .footer-company a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .footer-company a:hover,
+    .footer-company a:focus-visible {
+      color: var(--blue);
+      text-decoration: underline;
+    }
+
+    .social-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .social-link {
+      display: inline-flex;
+      width: 38px;
+      height: 38px;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid var(--line);
+      border-radius: 50%;
+      background: #fff;
+      transition: transform 180ms ease, border-color 180ms ease, box-shadow 180ms ease;
+    }
+
+    .social-link img {
+      width: 18px;
+      height: 18px;
+    }
+
+    .social-link:hover,
+    .social-link:focus-visible {
+      border-color: var(--cyan);
+      box-shadow: 0 6px 16px rgba(38, 117, 187, 0.16);
+      transform: translateY(-2px);
+    }
+
+    .social-link:focus-visible {
+      outline: 3px solid rgba(67, 197, 231, 0.45);
+      outline-offset: 3px;
+    }
+
+    .copyright {
+      margin: 28px 0 0;
       color: #91a1af;
       font-size: 0.76rem;
+      text-align: center;
     }
 
     @media (max-width: 520px) {
@@ -189,10 +268,24 @@
       footer {
         margin-top: 36px;
       }
+
+      .footer-content {
+        grid-template-columns: 1fr;
+        gap: 24px;
+      }
+
+      .social-links {
+        justify-content: center;
+      }
+
+      footer {
+        text-align: center;
+      }
     }
 
     @media (prefers-reduced-motion: reduce) {
-      .button {
+      .button,
+      .social-link {
         transition: none;
       }
     }
@@ -217,7 +310,41 @@
       Visit the E.S.D. website
     </a>
 
-    <footer>&copy; 2026 Visiobotiq</footer>
+    <footer>
+      <div class="footer-content">
+        <div>
+          <p class="footer-heading">E.S.D. Industrial Automation</p>
+          <p class="footer-company">
+            Beekstraat 23 | 8820 Torhout<br />
+            <a href="tel:+32477363656">+32 477 36 36 56</a><br />
+            <a href="mailto:info@esdbv.be">info@esdbv.be</a><br />
+            BTW BE0879 920 454
+          </p>
+        </div>
+
+        <div>
+          <p class="footer-heading">Follow Visiobotiq</p>
+          <nav class="social-links" aria-label="Visiobotiq social media">
+            <a class="social-link" href="https://www.instagram.com/visiobotiq/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+              <img src="Assets/social/instagram.svg" alt="" />
+            </a>
+            <a class="social-link" href="https://www.facebook.com/profile.php?id=61595347847189&locale=nl_BE" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+              <img src="Assets/social/facebook.svg" alt="" />
+            </a>
+            <a class="social-link" href="https://x.com/Visiobotiq" target="_blank" rel="noopener noreferrer" aria-label="X">
+              <img src="Assets/social/x.svg" alt="" />
+            </a>
+            <a class="social-link" href="https://www.youtube.com/@Visiobotiq" target="_blank" rel="noopener noreferrer" aria-label="YouTube">
+              <img src="Assets/social/youtube.svg" alt="" />
+            </a>
+            <a class="social-link" href="https://www.tiktok.com/@visiobotiq" target="_blank" rel="noopener noreferrer" aria-label="TikTok">
+              <img src="Assets/social/tiktok.svg" alt="" />
+            </a>
+          </nav>
+        </div>
+      </div>
+      <p class="copyright">&copy; 2026 Visiobotiq</p>
+    </footer>
   </main>
 </body>
 </html>
