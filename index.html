@@ -53,6 +53,7 @@
     }
 
     .page {
+      position: relative;
       width: min(920px, 100%);
       padding: clamp(34px, 7vw, 76px) clamp(24px, 8vw, 92px);
       text-align: center;
@@ -61,6 +62,94 @@
       border-radius: 28px;
       box-shadow: 0 24px 70px rgba(20, 61, 95, 0.12);
       backdrop-filter: blur(8px);
+    }
+
+    .language-picker {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 8px;
+      margin-bottom: 22px;
+      color: var(--muted);
+      font-size: 0.78rem;
+      font-weight: 700;
+    }
+
+    .language-picker label {
+      letter-spacing: 0.04em;
+    }
+
+    .language-menu {
+      position: relative;
+    }
+
+    .language-toggle {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      min-width: 142px;
+      padding: 7px 11px;
+      color: var(--navy);
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: #fff;
+      font: inherit;
+      cursor: pointer;
+    }
+
+    .language-toggle::after {
+      content: "⌄";
+      margin-left: auto;
+      font-size: 1rem;
+    }
+
+    .language-toggle:focus-visible,
+    .language-option:focus-visible {
+      outline: 3px solid rgba(67, 197, 231, 0.45);
+      outline-offset: 2px;
+    }
+
+    .language-options {
+      position: absolute;
+      top: calc(100% + 6px);
+      right: 0;
+      z-index: 2;
+      display: grid;
+      min-width: 170px;
+      padding: 5px;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      background: #fff;
+      box-shadow: 0 10px 24px rgba(20, 61, 95, 0.14);
+    }
+
+    .language-options[hidden] {
+      display: none;
+    }
+
+    .language-option {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 10px;
+      color: var(--navy);
+      border: 0;
+      border-radius: 8px;
+      background: transparent;
+      font: inherit;
+      text-align: left;
+      cursor: pointer;
+    }
+
+    .language-option:hover,
+    .language-option[aria-selected="true"] {
+      background: #eef7fb;
+    }
+
+    .language-flag {
+      font-family: "Segoe UI Emoji", "Apple Color Emoji", sans-serif;
+      font-size: 1.15rem;
+      line-height: 1;
     }
 
     .brand {
@@ -261,6 +350,10 @@
         margin-bottom: 38px;
       }
 
+      .language-picker {
+        justify-content: center;
+      }
+
       .divider {
         margin: 34px 0 28px;
       }
@@ -293,21 +386,37 @@
 </head>
 <body>
   <main class="page">
+    <div class="language-picker">
+      <label id="language-label" data-i18n="languageLabel">Language</label>
+      <div class="language-menu">
+        <button id="language-toggle" class="language-toggle" type="button" aria-haspopup="listbox" aria-expanded="false" aria-labelledby="language-label language-current">
+          <span id="language-current" class="language-current"></span>
+        </button>
+        <div id="language-options" class="language-options" role="listbox" aria-labelledby="language-label" hidden>
+          <button class="language-option" type="button" role="option" data-language="nl"><span class="language-flag" aria-hidden="true">🇳🇱</span> Nederlands</button>
+          <button class="language-option" type="button" role="option" data-language="en"><span class="language-flag" aria-hidden="true">🇬🇧</span> English</button>
+          <button class="language-option" type="button" role="option" data-language="de"><span class="language-flag" aria-hidden="true">🇩🇪</span> Deutsch</button>
+          <button class="language-option" type="button" role="option" data-language="fr"><span class="language-flag" aria-hidden="true">🇫🇷</span> Français</button>
+          <button class="language-option" type="button" role="option" data-language="es"><span class="language-flag" aria-hidden="true">🇪🇸</span> Español</button>
+        </div>
+      </div>
+    </div>
+
     <img class="brand" src="Assets/visiobotIQ.png" alt="Visiobotiq" />
 
-    <p class="eyebrow">Coming soon</p>
-    <h1>Our new website is under construction.</h1>
-    <p class="intro">
+    <p class="eyebrow" data-i18n="eyebrow">Coming soon</p>
+    <h1 data-i18n="headline">Our new website is under construction.</h1>
+    <p class="intro" data-i18n="intro">
       Soon you will discover our modular software platform for
       advanced industrial automation.
     </p>
 
     <div class="divider" aria-hidden="true"></div>
 
-    <p class="partner-label">A product by</p>
+    <p class="partner-label" data-i18n="partnerLabel">A product by</p>
     <img class="esd-logo" src="Assets/Logo ESD_RGB.png" alt="E.S.D. Industrial Automation" />
     <a class="button" href="https://www.esdbv.be/" target="_blank" rel="noopener noreferrer">
-      Visit the E.S.D. website
+      <span data-i18n="visitButton">Visit the E.S.D. website</span>
     </a>
 
     <footer>
@@ -323,8 +432,8 @@
         </div>
 
         <div>
-          <p class="footer-heading">Follow Visiobotiq</p>
-          <nav class="social-links" aria-label="Visiobotiq social media">
+          <p class="footer-heading" data-i18n="followHeading">Follow Visiobotiq</p>
+          <nav class="social-links" aria-label="Visiobotiq social media" data-i18n-aria-label="socialNavLabel">
             <a class="social-link" href="https://www.instagram.com/visiobotiq/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
               <img src="Assets/social/instagram.svg" alt="" />
             </a>
@@ -346,5 +455,133 @@
       <p class="copyright">&copy; 2026 Visiobotiq</p>
     </footer>
   </main>
+  <script>
+    const translations = {
+      nl: {
+        languageLabel: "Taal",
+        selectLanguage: "Kies taal",
+        eyebrow: "Binnenkort",
+        headline: "Onze nieuwe website is in aanbouw.",
+        intro: "Binnenkort ontdek je ons modulair softwareplatform voor geavanceerde industriële automatisering.",
+        partnerLabel: "Een product van",
+        visitButton: "Bezoek de website van E.S.D.",
+        followHeading: "Volg Visiobotiq",
+        socialNavLabel: "Sociale media van Visiobotiq",
+        title: "Visiobotiq | Binnenkort",
+        description: "Visiobotiq - modulair softwareplatform voor geavanceerde industriële automatisering."
+      },
+      en: {
+        languageLabel: "Language",
+        selectLanguage: "Select language",
+        eyebrow: "Coming soon",
+        headline: "Our new website is under construction.",
+        intro: "Soon you will discover our modular software platform for advanced industrial automation.",
+        partnerLabel: "A product by",
+        visitButton: "Visit the E.S.D. website",
+        followHeading: "Follow Visiobotiq",
+        socialNavLabel: "Visiobotiq social media",
+        title: "Visiobotiq | Coming soon",
+        description: "Visiobotiq - modular software platform for advanced industrial automation."
+      },
+      de: {
+        languageLabel: "Sprache",
+        selectLanguage: "Sprache auswählen",
+        eyebrow: "Demnächst",
+        headline: "Unsere neue Website befindet sich im Aufbau.",
+        intro: "Schon bald entdecken Sie unsere modulare Softwareplattform für fortschrittliche industrielle Automatisierung.",
+        partnerLabel: "Ein Produkt von",
+        visitButton: "E.S.D.-Website besuchen",
+        followHeading: "Visiobotiq folgen",
+        socialNavLabel: "Visiobotiq in den sozialen Medien",
+        title: "Visiobotiq | Demnächst",
+        description: "Visiobotiq - modulare Softwareplattform für fortschrittliche industrielle Automatisierung."
+      },
+      fr: {
+        languageLabel: "Langue",
+        selectLanguage: "Choisir la langue",
+        eyebrow: "Bientôt disponible",
+        headline: "Notre nouveau site web est en construction.",
+        intro: "Vous découvrirez bientôt notre plateforme logicielle modulaire pour l'automatisation industrielle avancée.",
+        partnerLabel: "Un produit de",
+        visitButton: "Visiter le site web d'E.S.D.",
+        followHeading: "Suivez Visiobotiq",
+        socialNavLabel: "Réseaux sociaux de Visiobotiq",
+        title: "Visiobotiq | Bientôt disponible",
+        description: "Visiobotiq - plateforme logicielle modulaire pour l'automatisation industrielle avancée."
+      },
+      es: {
+        languageLabel: "Idioma",
+        selectLanguage: "Seleccionar idioma",
+        eyebrow: "Próximamente",
+        headline: "Nuestro nuevo sitio web está en construcción.",
+        intro: "Próximamente descubrirás nuestra plataforma de software modular para la automatización industrial avanzada.",
+        partnerLabel: "Un producto de",
+        visitButton: "Visitar el sitio web de E.S.D.",
+        followHeading: "Sigue a Visiobotiq",
+        socialNavLabel: "Redes sociales de Visiobotiq",
+        title: "Visiobotiq | Próximamente",
+        description: "Visiobotiq - plataforma de software modular para la automatización industrial avanzada."
+      }
+    };
+
+    const supportedLanguages = Object.keys(translations);
+    const languageToggle = document.querySelector("#language-toggle");
+    const languageCurrent = document.querySelector("#language-current");
+    const languageOptions = document.querySelector("#language-options");
+    const languageButtons = document.querySelectorAll(".language-option");
+
+    function detectLanguage() {
+      const browserLanguages = navigator.languages || [navigator.language];
+      return browserLanguages
+        .map((language) => language.toLowerCase().split("-")[0])
+        .find((language) => supportedLanguages.includes(language)) || "en";
+    }
+
+    function applyLanguage(language) {
+      const dictionary = translations[language] || translations.en;
+      document.documentElement.lang = language;
+      document.title = dictionary.title;
+      document.querySelector('meta[name="description"]').content = dictionary.description;
+      const selectedButton = document.querySelector(`[data-language="${language}"]`);
+      languageCurrent.textContent = selectedButton.textContent.trim();
+      languageToggle.setAttribute("aria-label", dictionary.selectLanguage);
+      languageButtons.forEach((button) => {
+        button.setAttribute("aria-selected", String(button.dataset.language === language));
+      });
+
+      document.querySelectorAll("[data-i18n]").forEach((element) => {
+        element.textContent = dictionary[element.dataset.i18n];
+      });
+
+      document.querySelectorAll("[data-i18n-aria-label]").forEach((element) => {
+        element.setAttribute("aria-label", dictionary[element.dataset.i18nAriaLabel]);
+      });
+    }
+
+    const savedLanguage = window.localStorage.getItem("visiobotiq-language");
+    const initialLanguage = supportedLanguages.includes(savedLanguage) ? savedLanguage : detectLanguage();
+    applyLanguage(initialLanguage);
+
+    languageToggle.addEventListener("click", () => {
+      const isOpen = languageToggle.getAttribute("aria-expanded") === "true";
+      languageToggle.setAttribute("aria-expanded", String(!isOpen));
+      languageOptions.hidden = isOpen;
+    });
+
+    languageButtons.forEach((button) => button.addEventListener("click", () => {
+      const language = button.dataset.language;
+      window.localStorage.setItem("visiobotiq-language", language);
+      applyLanguage(language);
+      languageOptions.hidden = true;
+      languageToggle.setAttribute("aria-expanded", "false");
+    }));
+
+    document.addEventListener("click", (event) => {
+      if (!event.target.closest(".language-menu")) {
+        languageOptions.hidden = true;
+        languageToggle.setAttribute("aria-expanded", "false");
+      }
+    });
+  </script>
 </body>
 </html>
